@@ -9,8 +9,7 @@ import Event from './components/Event'
 import Details from './components/Details'
 import Default from './components/Default'
 import Cart from './components/Cart'
-
-
+import SponsorList from './components/SponsorList'
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
             <Route exact path="/" component={EventList}/>
             <Route path="/details" component={Details}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/sponsors" component={SponsorList}/>
             <Route component={Default}/>
         </Switch>
     </React.Fragment>
