@@ -14,7 +14,7 @@ export default class SponsorList extends Component {
                 <React.Fragment>
                     <div className="py-5">
                         <div className="container">
-                            <Title title="Events"/>
+                            <Title title="Sponsors"/>
                             <Sponsor name="Armaan" budget="5" spend="6" profile="https://images.unsplash.com/photo-1558980394-34764db076b4" lookout="something"/>
                         </div>
                     </div>

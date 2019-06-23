@@ -57,3 +57,12 @@ html { font-family: 'Inter', sans-serif; }
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter var', sans-serif; }
 }
+
+.sponsor-card {
+  text-align: center;
+}
+
+.budget-section {
+  color: blue;
+  font-weight: 600;
+}

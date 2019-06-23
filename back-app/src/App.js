@@ -19,8 +19,8 @@ function App() {
             <Route exact path="/" component={EventList}/>
             <Route path="/details" component={Details}/>
             <Route path="/cart" component={Cart}/>
+            <Route path="/sponsors" component={SponsorList}/>
             <Route component={Default}/>
-            <Route path="sponsors" component={SponsorList}/>
         </Switch>
     </React.Fragment>
   );
