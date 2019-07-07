@@ -4,34 +4,60 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {EventConsumer} from '../context';
 import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button } from 'reactstrap';
+    CardTitle, CardSubtitle, Button, Progress } from 'reactstrap';
+
 import logo from "../logo.svg"
+import CardFooter from 'reactstrap/es/CardFooter';
+import PropTypes from 'prop-types';
 
 
 
 
 export default class Event extends Component {
+
     render() {
-        const {id, title, img, price, inCart} = this.props.event;
+        this.state = {
+            count: 1,
+        };
+        const {id, name, hostname, date, inCart, image, city, budget, earned} = this.props.event;
 
         return (
             <EventWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-                <div>
-                    <Link to="/details">
-                        <Card>
-                            <CardImg top width="100%" src={logo} alt="Card image cap" className="p-5"/>
-                            <CardBody>
-                                <h2 style={eventNameStyle}>Event Name</h2>
-                                <h5 style={companyStyle}>by Company</h5>
-                                <h5 style={dateStyle}>01/02/03</h5>
-                            </CardBody>
-                        </Card>
-                    </Link>
-                </div>
+                <EventConsumer>
+                    {(value) => (
+                        <div>
+                            <Card>
+                                <Link to="/details">
+                                    <CardImg top width="100%" src={image} alt="Card image cap" className="p-5" onClick={() => {value.handleDetails(id)}}/>
+                                </Link>
+                                <CardBody>
+                                    <h2 style={eventNameStyle}>{name}</h2>
+                                    <h5 style={companyStyle}>{hostname}</h5>
+                                    <h5 style={dateStyle}>{date}</h5>
+                                    <h5 style={companyStyle}>{city}</h5>
+                                    <div className="text-center">${earned} Earned</div>
+                                    <Progress value={(earned/budget)*100} animated={true}/>
+                                    <div className="text-center">${budget} Needed</div>
+                                </CardBody>
+                            </Card>
+                        </div>
+                    )}
+                </EventConsumer>
             </EventWrapper>
         );
     }
 }
+
+Event.propTypes = {
+    event:PropTypes.shape({
+        id:PropTypes.number,
+        img:PropTypes.number,
+        name:PropTypes.string,
+        date:PropTypes.string,
+        company:PropTypes.string,
+        city:PropTypes.string,
+    }).isRequired
+};
 
 const EventWrapper = styled.div`
     

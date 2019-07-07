@@ -12,7 +12,7 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap';
 
-import logo from '../logo.svg';
+import logo from '../VOUCH.png';
 import styled from 'styled-components';
 
 export default class Example extends React.Component {
@@ -34,22 +34,16 @@ export default class Example extends React.Component {
             <div>
                 <Navbar color="light" light expand="md">
                     <NavbarBrand href="/">
-                        <img src={logo} alt="BACK"/>
+                        <img src={logo} alt="VOUCH"/>
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/cart">Cart</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink href="/cart">
-                                        <span className="mr-2">
-                                            <IconContainer className="fas fa-cart-plus"/>
-                                        </span>
+                                    <span className="mr-2">
+                                        <IconContainer className="fas fa-cart-plus"/>
+                                    </span>
                                 </NavLink>
                             </NavItem>
 
