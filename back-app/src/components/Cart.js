@@ -4,6 +4,7 @@ import OpportunityCart from './OpportunityCart'
 import Opportunity from './Opportunity';
 import {Card, CardBody} from 'reactstrap';
 import {EventConsumer} from '../context';
+import { PayPalButton } from "react-paypal-button-v2";
 
 
 export default class Cart extends Component {
@@ -44,6 +45,20 @@ export default class Cart extends Component {
                     <div className="col">
                         <h1>Total</h1>
                         <h2>$200</h2>
+                        <PayPalButton
+                            amount="0.01"
+                            onSuccess={(details, data) => {
+                            alert("Transaction completed by " + details.payer.name.given_name);
+                    
+                            // OPTIONAL: Call your server to save the transaction
+                            return fetch("/paypal-transaction-complete", {
+                                method: "post",
+                                body: JSON.stringify({
+                                orderID: data.orderID
+                                })
+                            });
+                            }}
+                        />
                     </div>
                 </div>
             </React.Fragment>
