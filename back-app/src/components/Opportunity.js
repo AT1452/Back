@@ -8,18 +8,56 @@ import { Card, CardImg, CardText, CardBody,
 import logo from "../logo.svg"
 import CardFooter from 'reactstrap/es/CardFooter';
 import PropTypes from 'prop-types';
+import { Alert } from 'react-alert'
+import firebase from './Firestore'
 
 
-
-export default class Opportunity extends Component {
-
+export default class Opportunity extends React.Component {
+    constructor(props)
+    {
+        super();
+        this.state = {
+            eventName: 'something',
+            sizeofdb: 0,
+        }
+    }
+    
+    addToCart(cost, name, desc, eventName)
+    {
+        const db = firebase.firestore();
+        var sizeofdb = 0;
+        //this.receiveEventName()
+        
+        console.log(sizeofdb);
+        db.collection("cart").doc(eventName).set({
+            name: eventName,
+            sponsorship: name,
+            desc: desc,
+            price: cost
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+        
+        alert("You purchased the " + name + " which will cost you: $" + cost);
+        
+        return cost;
+    }
+    receiveEventName()
+    {
+        alert(this.props.passEventName(this.state.name));
+    }
 
     render() {
+
         const {id, name, desc, usd, inCart} = this.props.opportunity;
-        console.log(this.props.opportunity);
-
-
+        console.log(this.props);
+        console.log(this.props.passEventName);
         return (
+
             <OpportunityWrapper className="mx-auto">
                 <div className="mx-auto">
                     <Card style={cardStyle}>
@@ -30,7 +68,7 @@ export default class Opportunity extends Component {
                                 <div className="col" style={col}>
                                     <EventConsumer>
                                         {value => (
-                                        <button style={cartBtn} onClick={() => {value.addToCart(name, id)}} disabled={inCart ? true : false}>
+                                        <button style={cartBtn} onClick={() => this.addToCart(usd, name, desc, this.props.passEventName)}>
                                             <i className="fas fa-cart-plus"/>
                                         </button>
                                         )}

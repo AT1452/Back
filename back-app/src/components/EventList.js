@@ -35,6 +35,7 @@ export default class EventList extends Component {
                                 <EventConsumer>
                                     {val => {
                                         return val.events.map(event => {
+                                            console.log(event);
                                             return <Event event={event}/>
                                         })
                                     }}

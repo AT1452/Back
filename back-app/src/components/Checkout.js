@@ -3,14 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import OpportunityCart from './OpportunityCart'
 import Opportunity from './Opportunity';
 import {Card, CardBody} from 'reactstrap';
-import { Link } from 'react-router-dom';
 import {EventConsumer} from '../context';
 import { PayPalButton } from "react-paypal-button-v2";
 import firebase from './Firestore'
-import Checkout from './Checkout';
 
 var eventName = "Hello!"
-export default class Cart extends Component {
+export default class Checkout extends Component {
     state = {
         eventArray: [],
         totalCost: 0
@@ -66,7 +64,6 @@ export default class Cart extends Component {
                         <p style={eventNameStyle}>{sponsorship}</p>
                         <p style={companyStyle}>{desc}</p>
                         <p style={dateStyle}>${price}</p>
-                        <button style={buttonStyle} id={name} onClick={() => this.removeEvent(name)}>Remove From Cart</button>
                     </CardBody>
                 </Card>
             </div>
@@ -77,8 +74,10 @@ export default class Cart extends Component {
         
         return (
             <React.Fragment>
+                <h1>Checkout</h1>
                 <div className="row">
                     <div className="col">
+                        <h2>Sign In</h2>
                         <div>
                             {this.state.eventArray.map((event, index) => {
                                 return <div className="box" key={index}>{event}</div>
@@ -86,28 +85,8 @@ export default class Cart extends Component {
                         </div>
                     </div>
                     <div className="col">
-                        <h1>Total</h1>
-                        <h2>${this.state.totalCost}</h2>
-                        <PayPalButton
-                            amount={this.state.totalCost}
-                            onSuccess={(details, data) => {
-                            alert("Transaction completed by " + details.payer.name.given_name);
+                        <h2>Continue as a Guest</h2>
                     
-                            // OPTIONAL: Call your server to save the transaction
-                            return fetch("/paypal-transaction-complete", {
-                                method: "post",
-                                body: JSON.stringify({
-                                orderID: data.orderID
-                                })
-                            });
-                            }}
-                        />
-                        <!-- -->
-                        <Link to = "/checkout">
-                            <button style={buttonStyle}>
-                                Proceed to Checkout
-                            </button>
-                        </Link>        
                     </div>
                 </div>
             </React.Fragment>

@@ -10,6 +10,7 @@ import Details from './components/Details'
 import Default from './components/Default'
 import Cart from './components/Cart'
 import SponsorList from './components/SponsorList'
+import Checkout from './components/Checkout'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Switch>
             <Route exact path="/" component={EventList}/>
             <Route path="/details" component={Details}/>
+            <Route path="/checkout" component={Checkout}/>
             <Route path="/cart" component={Cart}/>
             <Route path="/sponsors" component={SponsorList}/>
             <Route component={Default}/>

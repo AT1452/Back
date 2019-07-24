@@ -3,14 +3,28 @@ import { EventConsumer } from '../context';
 import { Link } from 'react-router-dom';
 import Event from './EventList';
 import Opportunity from './Opportunity'
+import firebase from './Firestore'
+
+
 
 
 export default class Details extends Component {
+    constructor(props)
+    {
+        super();
+    }
+    passEventName()
+    {
+        alert("Hello");
+    }
+      
     render(){
         return (
             <EventConsumer>
                 {(value) => {
+                        console.log('ooga booga')
                         console.log(value);
+                        
                         const {id, name, image, hostname, desc, inCart, opps, contact,} = value.details;
                         // const oppsDisplay = opps.map(opp => (
                         //     <Opportunity opportunity={opp}/>
@@ -18,10 +32,11 @@ export default class Details extends Component {
                         let oppArray = [];
                         for(let x=0; x<opps.length; x++){
                             oppArray.push(opps[x])
+                            
                         }
                         console.log("oppAraay below");
                         const oppsDisplay = oppArray.map(opp => (
-                            <Opportunity opportunity={opp}/>
+                            <Opportunity opportunity={opp} passEventName={name}></Opportunity>
                         ));
 
                         return(
@@ -52,7 +67,7 @@ export default class Details extends Component {
                                                 <button style={backButton}>
                                                     Back to Events
                                                 </button>
-                                            </Link>
+                                            </Link>                                            
                                         </div>
                                     </div>
                                 </div>

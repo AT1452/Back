@@ -60,9 +60,9 @@ class EventProvider extends Component {
         console.log(this.state.details);
     };
 
-    addToCart = (name, id) => {
+    addToCart = (id) => {
         let tempEvents = [...this.state.events];
-        const firstIndex = tempEvents.indexOf(this.getEventbyName(name));
+        const firstIndex = tempEvents.indexOf(this.getEventbyName(id));
         const actIndex = tempEvents[firstIndex].find(opp => opp.id === id);
         const opp = tempEvents[firstIndex][actIndex];
         opp.inCart = true;
