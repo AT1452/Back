@@ -102,12 +102,7 @@ export default class Cart extends Component {
                             });
                             }}
                         />
-                        <!-- -->
-                        <Link to = "/checkout">
-                            <button style={buttonStyle}>
-                                Proceed to Checkout
-                            </button>
-                        </Link>        
+                             
                     </div>
                 </div>
             </React.Fragment>
